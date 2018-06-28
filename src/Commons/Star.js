@@ -24,7 +24,12 @@ export default class Star extends Component {
         if (value <= 0) {
             return <Text style={styles.smallFont}>暂无评分</Text>;
         }
-        let star = value.toFixed(1).toString().split('.');
+        let star = [];
+        if (typeof(value) === 'number') {
+            star = value.toFixed(1).toString().split('.');
+        } else  {
+            star = value.split('.');
+        }
         for (let i = 1; i < 6; i++) {
             if (star[0] < 2) {
                 if (flag) {

@@ -46,19 +46,21 @@ export default class BTSearchBar extends Component {
                                       size={15}
                                       color="#8B8B8B"/>
                                 <TextInput
+                                    style={{flex:8}}
                                     placeholder={this.props.placeholder}
                                     placeholderTextColor={'#8B8B8B'}
                                     onChangeText={this.props.onSearch}
                                     underlineColorAndroid="transparent"
+                                    clearButtonMode={'while-editing'}
                                     autoFocus={true}/>
                             </View>
-                            <TouchableOpacity style={styles.cancel}
-                                              onPress={()=> {
-                                                  Actions.pop();
-                                                  this.props.onCancelSearch;
-                                              }}>
-                                <Text style={{color:'#73B582'}}>取消</Text>
-                            </TouchableOpacity>
+                            {
+                                this.props.showCancel &&
+                                <TouchableOpacity style={styles.cancel}
+                                                  onPress={this.props.onCancelSearch}>
+                                    <Text style={{color:'#73B582'}}>取消</Text>
+                                </TouchableOpacity>
+                            }
                         </View>
                         :
                         <TouchableOpacity style={styles.searchStyle}
@@ -79,16 +81,17 @@ export default class BTSearchBar extends Component {
 
 BTSearchBar.propTypes = {
     showCity:PropTypes.bool,
+    showCancel:PropTypes.bool,
     enableSearchInput:PropTypes.bool,
     city:PropTypes.string,
     onLocation:PropTypes.func,
     onSearch:PropTypes.func,
-    onSearchInput:PropTypes.func,
     onCancelSearch:PropTypes.func,
     placeholder:PropTypes.string,
 }
 BTSearchBar.defaultProps = {
-    showCity:true,
+    showCity:false,
+    showCancel:false,
     enableSearchInput:false,
 }
 

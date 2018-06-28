@@ -14,9 +14,7 @@
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^4.6.0",
-    "react-native-video": "^2.3.1",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "react-native-video": "^2.3.1"
   },
   "devDependencies": {
     "babel-jest": "23.0.1",

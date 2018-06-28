@@ -34,7 +34,7 @@ export default class HotPlayList extends Component {
     }
     //请求数据
     fetchData = () => {
-        let url = `${this.props.requestURL}?start=${start}&count=10`;
+        let url = `${this.props.requestURL}?apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
         console.log(url);
         let type = this.props.requestURL.includes('in_theaters')?0:1;
         fetch(url)

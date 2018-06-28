@@ -12,10 +12,14 @@ import TabIcon from './TabIcon';
 
 import HotPlay from '../components/HotPlay';
 import SeekMovies from '../components/SeekMovies';
+import Music from '../components/Music';
 import Mine from '../components/Mine';
 import SearchMovies from '../components/SearchMovies';
 import MovieDetail from '../components/MovieDetail';
 import ImageBrowser from './ImageBrowser';
+import MusicDetail from "../components/MusicDetail";
+
+
 
 export default BTRouter = () => (
 	<Router>
@@ -47,6 +51,12 @@ export default BTRouter = () => (
                        component={SeekMovies}
 
                 />
+                <Scene key="Music"
+                       title='音乐'
+                       image={'music'}
+                       component={Music}
+                       hideNavBar
+                />
                 <Scene key="Mine"
                        title='我的'
                        image={'user'}
@@ -76,6 +86,15 @@ export default BTRouter = () => (
                 component={ImageBrowser}
                 gesturesEnabled={true}
                 hideNavBar
+                onLeft={Actions.pop}
+            />
+            <Scene
+                key="MusicDetail"
+                title='详情'
+                component={MusicDetail}
+                titleStyle={{color:'white'}}
+                gesturesEnabled={true}
+                backButtonTintColor={'white'}
                 onLeft={Actions.pop}
             />
 		</Modal>

@@ -31,6 +31,7 @@ export default class SearchMovies extends Component {
     }
     cancelSearch = ()=> {
         Keyboard.dismiss();
+        Actions.pop();
     }
     //搜索
     searchData = (text)=> {
@@ -73,11 +74,11 @@ export default class SearchMovies extends Component {
         return (
             <View style={styles.container}>
                 <BTSearchBar
-                    showCity={false}
+                    showCancel={true}
                     placeholder={'输入电影名、演员名'}
                     enableSearchInput={true}
                     onSearch={(text)=>{this.searchData(text)}}
-                    onCancelSearch={()=>{this.cancelSearch}}
+                    onCancelSearch={this.cancelSearch}
                 />
                 {this.state.loading
                     ? <ActivityIndicator size='large' style={{marginTop:100}} />
