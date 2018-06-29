@@ -29,24 +29,23 @@ export default class Book extends Component {
 
     //请求数据
     fetchData = (text) => {
-        let url = `https://api.douban.com/v2/book/search?q=${text}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${this.state.start}&count=10`;
+        let start = this.state.start;
+        if (text != this.state.searchText) start = 0;
+        let url = `https://api.douban.com/v2/book/search?q=${text}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
         console.log(url);
         fetch(url)
             .then((response)=>response.json())
             .then((res)=>{
                 let books:Array = [];
-                if (this.state.start === 0) {
+                if (start === 0) {
                     books = res.books;
                 } else {
                     books = this.state.books.concat(res.books);
                 }
-                let start = res.count+res.start;
                 let hasMore = false;
                 if (start < res.total) {
                     hasMore = true;
-                    start++;
-                } else {
-                    start = 0;
+                    start += 11;
                 }
                 this.setState({books:books,start:start,hasMore:hasMore,searchText:text})
             }).catch((error)=>{

@@ -57,15 +57,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         margin:10,
+        borderRadius:10,
         backgroundColor: 'rgb(237,241,238)',
     },
     image: {
+        //margin:5,
         width:(SCREEN_WIDTH-40)/2,
         height:280,
-        borderRadius:10,
     },
     title: {
         width:(SCREEN_WIDTH-40)/2,
+        marginLeft:5,
         marginTop:10,
         fontSize:15,
         fontWeight:'bold',
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     },
     content: {
         width:(SCREEN_WIDTH-40)/2,
-        marginTop:5,
+        margin:5,
         fontSize:13,
         color:'gray',
     },

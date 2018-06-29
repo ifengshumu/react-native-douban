@@ -112,7 +112,7 @@ export default class CityList extends Component {
             <View style={styles.container}>
                 {
                     this.state.loading
-                        ? <ActivityIndicator size='large' color={'yellow'} style={{marginTop:100}} />
+                        ? <ActivityIndicator size='large' color={'purple'} style={{marginTop:100}} />
                         :<SectionList
                             sections={this.state.citys}
                             renderSectionHeader={this.renderSection}
