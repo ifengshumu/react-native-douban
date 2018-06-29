@@ -10,6 +10,7 @@ import {
     View,
     Text,
     Image,
+    DeviceEventEmitter,
     ActivityIndicator,
     FlatList,
 } from 'react-native';
@@ -30,13 +31,26 @@ export default class HotPlayList extends Component {
     }
 
     componentDidMount() {
+        this.noti = DeviceEventEmitter.addListener('citychange', (city)=>{
+            start = 0;
+            this.setState({refreshing:true})
+            this.fetchData(city)
+        });
         this.fetchData();
     }
+
+    componentWillUnmount() {
+        this.noti.remove();
+    }
     //请求数据
-    fetchData = () => {
+    fetchData = (city) => {
         let url = `${this.props.requestURL}?apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
+        let type = 1;
+        if (this.props.requestURL.includes('in_theaters')) {
+            url = `${this.props.requestURL}?city=${city}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
+            type = 0;
+        }
         console.log(url);
-        let type = this.props.requestURL.includes('in_theaters')?0:1;
         fetch(url)
             .then((response)=>response.json())
             .then((res)=>{

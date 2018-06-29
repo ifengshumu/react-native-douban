@@ -1,5 +1,5 @@
 /**
- * Created by leezhihua on 2018/6/28
+ * Created by leezhihua on 2018/6/22
  * @flow
  * */
 'use strict';
@@ -10,17 +10,17 @@ import {
     View,
     Text,
     Image,
-    FlatList,
     Keyboard,
+    FlatList,
 } from 'react-native';
-import BTSearchBar from '../Commons/BTSearchBar'
-import MusicItem from './MusicItem';
+import BTSearchBar from '../Commons/BTSearchBar';
+import BookItem from './BookItem';
 
-export default class Music extends Component {
+export default class Book extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            music:[],
+            books:[],
             searchText:'',
             start:0,
             hasMore:false,
@@ -29,16 +29,16 @@ export default class Music extends Component {
 
     //请求数据
     fetchData = (text) => {
-        let url = `https://api.douban.com/v2/music/search?q=${text}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${this.state.start}&count=10`;
+        let url = `https://api.douban.com/v2/book/search?q=${text}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${this.state.start}&count=10`;
         console.log(url);
         fetch(url)
             .then((response)=>response.json())
             .then((res)=>{
-                let music:Array = [];
+                let books:Array = [];
                 if (this.state.start === 0) {
-                    music = res.musics;
+                    books = res.books;
                 } else {
-                    music = this.state.music.concat(res.musics);
+                    books = this.state.books.concat(res.books);
                 }
                 let start = res.count+res.start;
                 let hasMore = false;
@@ -48,12 +48,12 @@ export default class Music extends Component {
                 } else {
                     start = 0;
                 }
-                console.log(music);
-                this.setState({music:music,start:start,hasMore:hasMore,searchText:text})
+                this.setState({books:books,start:start,hasMore:hasMore,searchText:text})
             }).catch((error)=>{
             console.log(error);
         });
     }
+
 
     //上拉加载
     loadMoreData = ()=> {
@@ -63,7 +63,7 @@ export default class Music extends Component {
     }
     //自定义分割线
     renderSeparator = () => (
-        <View style={{ height:1, backgroundColor:'gray',opacity:0.3 }}></View>
+        <View style={{ height:5, backgroundColor:'gray',opacity:0.3 }}></View>
     );
 
     render() {
@@ -72,20 +72,21 @@ export default class Music extends Component {
                 <BTSearchBar
                     enableSearchInput={true}
                     showCancel={true}
-                    placeholder={'请输入歌曲名'}
+                    placeholder={'请输入图书名称'}
                     onSearch={(text)=>this.fetchData(text)}
                     onCancelSearch={()=>Keyboard.dismiss()}
                 />
                 <FlatList
-                    data={this.state.music}
+                    data={this.state.books}
                     onEndReached={this.loadMoreData}
                     onEndReachedThreshold={0.001}
+                    numColumns={2}
+                    // columnWrapperStyle={styles.twoColumns}
                     keyboardDismissMode={'on-drag'}
                     keyExtractor={(item, index) => index.toString()}
-                    getItemLayout={(item, index) =>({length: 150, offset: (150 + 1) * index, index })}
                     ItemSeparatorComponent={this.renderSeparator}
                     renderItem={({item})=> {
-                        return <MusicItem item={item}/>
+                        return <BookItem item={item}/>
                     }}
                 />
             </View>
@@ -99,4 +100,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingTop:25,
     },
+    twoColumns: {
+        margin:10,
+        borderWidth:2,
+        borderColor:'orange',
+    }
 })

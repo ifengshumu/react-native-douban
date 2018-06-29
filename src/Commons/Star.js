@@ -75,7 +75,7 @@ Star.defaultProps = {
     height: 12
 };
 Star.propTypes = {
-    value: PropTypes.number.isRequired,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 const styles = StyleSheet.create({

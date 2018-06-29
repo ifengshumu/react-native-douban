@@ -22,9 +22,8 @@ export default class MusicItem extends Component {
 
     render() {
         let props = this.props.item;
-        console.log(props);
         return (
-            <TouchableHighlight onPress={()=>Actions.MusicDetail()} underlayColor={'rgb(239,218,181)'}>
+            <TouchableHighlight onPress={()=>Actions.MusicDetail({id:props.id})} underlayColor={'rgb(239,218,181)'}>
                 <View style={styles.container}>
                     <Image
                         source={{uri:props.image}}
@@ -33,15 +32,28 @@ export default class MusicItem extends Component {
                     />
                     <View style={{flex:3}}>
                         <Text style={styles.title}>{props.title}</Text>
-                        <Text style={styles.content}>演唱者：{props.author.map((v)=>v.name).join('/')}</Text>
-                        <Text style={styles.content}>时间：{props.attrs.pubdate.map((v)=>v).join('/')}</Text>
-                        <Text style={styles.content}>标签：{props.tags.map((v)=>v.name).join('/')}</Text>
+                        {/*演唱者*/}
+                        {
+                            props.author && props.author.length
+                                ?
+                                <Text style={styles.content}>演唱者：{props.author.map((v)=>v.name).join('/')}</Text>
+                                :
+                                <Text style={styles.content}>演唱者：未知</Text>
+                        }
+                        {/*标签*/}
+                        {
+                            props.tags && props.tags.length
+                                ?
+                                <Text style={styles.content}>标签：{props.tags.map((v)=>v.name).join('/')}</Text>
+                                :
+                                <Text style={styles.content}>标签：无</Text>
+                        }
                     </View>
                     <View style={styles.rate}>
                         <Text>豆瓣评分</Text>
-                        <Text>{props.rating.average}</Text>
-                        <Star value={props.rating.average}/>
-                        <Text>{props.rating.numRaters}人</Text>
+                        <Text style={{marginTop:5}}>{props.rating.average}</Text>
+                        <Star style={{marginTop:5}} value={props.rating.average}/>
+                        <Text style={{marginTop:5}}>{props.rating.numRaters}人</Text>
                     </View>
                 </View>
             </TouchableHighlight>

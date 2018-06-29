@@ -10,6 +10,8 @@ import { Dimensions, PixelRatio, Platform} from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
 
+import BTStorage from './BTStorage';
+
 // 通过系统API获得屏幕宽高
 let { height, width } = Dimensions.get('window');
 
@@ -25,3 +27,5 @@ global.SCREEN_HEIGHT = height;
 global.PixelRatio = PixelRatio.get();
 // router跳转的方法
 global.Actions = Actions;
+
+global.BTStorage = BTStorage.initStorage();

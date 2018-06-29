@@ -10,6 +10,7 @@ import {
     View,
     Text,
     Image,
+    DeviceEventEmitter
 } from 'react-native';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import BTSearchBar from '../Commons/BTSearchBar';
@@ -18,7 +19,16 @@ import HotPlayList from './HotPlayList';
 export default class HotPlay extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            city:'杭州'
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.city) {
+            this.setState({city:nextProps.city})
+            DeviceEventEmitter.emit('citychange', nextProps.city);
+        }
     }
 
     render() {
@@ -26,10 +36,10 @@ export default class HotPlay extends Component {
             <View style={styles.container}>
                 <BTSearchBar
                     showCity={true}
-                    city={'杭州'}
+                    city={this.state.city}
                     placeholder={'搜索电影名、演员名'}
                     onLocation={()=>{
-                        console.log('请求定位');
+                        Actions.CityList();
                     }}
                     onSearch={()=>Actions.SearchMovies()}
                 />

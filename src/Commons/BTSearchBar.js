@@ -18,7 +18,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class BTSearchBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            inputText:''
+        };
     }
     render() {
         return (
@@ -52,6 +54,8 @@ export default class BTSearchBar extends Component {
                                     onChangeText={this.props.onSearch}
                                     underlineColorAndroid="transparent"
                                     clearButtonMode={'while-editing'}
+                                    // enablesReturnKeyAutomatically={true}
+                                    // returnKeyType='search'
                                     autoFocus={true}/>
                             </View>
                             {
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cityStyle: {
-        flex:1,
+        flex:1.5,
         height:30,
         marginRight:8,
         justifyContent:'center',

@@ -4,9 +4,9 @@
  */
 
 import React, { Component } from 'react';
-
-import BTRouter from './src/Commons/BTRouter';
 import './src/Commons/Global';
+import BTRouter from './src/Commons/BTRouter';
+
 
 export default class App extends Component {
   render() {
