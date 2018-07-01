@@ -10,7 +10,7 @@ import {
     View,
     Text,
     Image,
-    TouchableHighlight,
+    TouchableOpacity,
     TouchableNativeFeedback,
     Platform,
 } from 'react-native';
@@ -27,72 +27,44 @@ export default class BTButton extends Component {
     layoutViews = ()=> {
         let posi = this.props.imagePosition;
         let hasAll = this.props.image && this.props.title;
-        let RNButton = Platform.OS === 'ios' ? TouchableHighlight : TouchableNativeFeedback;
-        if (posi === 'top' || posi === 'left') {
-            //图片、文字
-            if (hasAll) {
-                return (
-                    <RNButton style={this.props.style}
-                              underlayColor={this.props.underlayColor}
-                              onLongPress={this.props.onLongPress}
-                              onPress={this.props.onPress}>
-                        {
-                            this.renderTopOrLeftImageButton()
-                        }
-                    </RNButton>
-                )
-            } else {
-                return this.renderSingle()
-            }
+        let RNButton = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
+        //图片、文字
+        if (hasAll) {
+            return (
+                <RNButton style={this.props.style}
+                          onLongPress={this.props.onLongPress}
+                          onPress={this.props.onPress}>
+                    {
+                        posi === 'top' || posi === 'left'
+                            ? this.renderTopOrLeftImageButton()
+                            : this.renderRightOrBottomImageButton()
+                    }
+                </RNButton>
+            )
         } else {
-            //图片、文字
-            if (hasAll) {
-                return (
-                    <RNButton style={this.props.style}
-                              underlayColor={this.props.underlayColor}
-                              onLongPress={this.props.onLongPress}
-                              onPress={this.props.onPress}>
-                        {
-                            this.renderRightOrBottomImageButton()
-                        }
-                    </RNButton>
-                )
-            } else {
-                return this.renderSingle()
-            }
+            return this.renderSingle()
         }
     }
 
+    //只有图片or只有文字
     renderSingle = ()=> {
-        let RNButton = Platform.OS === 'ios' ? TouchableHighlight : TouchableNativeFeedback;
-        //只有图片
-        if (this.props.image && !this.props.title) {
-            return (
-                <RNButton style={this.props.style}
-                          underlayColor={this.props.underlayColor}
-                          onLongPress={this.props.onLongPress}
-                          onPress={this.props.onPress}>
-                    <View style={styles.container}>
-                        <Image style={this.props.imageStyle}
-                               source={{uri: this.props.image}}
-                        />
-                    </View>
-                </RNButton>
-            )
-        }
-        //只有文字
-        if (!this.props.image && this.props.title) {
-            return (
-                <RNButton style={this.props.style}
-                          underlayColor={this.props.underlayColor}
-                          onLongPress={this.props.onLongPress}
-                          onPress={this.props.onPress}>
-                    <View style={styles.container}>
-                        <Text style={this.props.titleStyle}>{this.props.title}</Text>
-                    </View>
-                </RNButton>
-            )
-        }
+        let RNButton = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
+        return (
+            <RNButton style={this.props.style}
+                      onLongPress={this.props.onLongPress}
+                      onPress={this.props.onPress}>
+                <View style={styles.container}>
+                    {
+                        this.props.image && !this.props.title
+                            ?
+                            <Image style={this.props.imageStyle}
+                                   source={{uri: this.props.image}}/>
+                            :
+                            <Text style={this.props.titleStyle}>{this.props.title}</Text>
+                    }
+                </View>
+            </RNButton>
+        )
     }
 
     //上图下文 or 左图右文

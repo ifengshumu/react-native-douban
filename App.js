@@ -2,6 +2,7 @@
  * Created by leezhihua on 2018/6/22
  * @flow
  */
+'use strict';
 
 import React, { Component } from 'react';
 import './src/Commons/Global';

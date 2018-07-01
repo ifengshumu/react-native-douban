@@ -14,12 +14,13 @@ import HotPlay from '../components/HotPlay';
 import SeekMovies from '../components/SeekMovies';
 import Music from '../components/Music';
 import Book from '../components/Book';
+import Mine from '../components/Mine';
 import SearchMovies from '../components/SearchMovies';
 import MovieDetail from '../components/MovieDetail';
 import ImageBrowser from './ImageBrowser';
 import MusicDetail from "../components/MusicDetail";
 import CityList from '../components/CityList';
-
+import BookDetail from '../components/BookDetail';
 
 export default BTRouter = () => (
 	<Router>
@@ -63,6 +64,12 @@ export default BTRouter = () => (
                        component={Book}
                        hideNavBar
                 />
+                <Scene key="Mine"
+                       title='我的'
+                       image={'user'}
+                       component={Mine}
+                       hideNavBar
+                />
             </Tabs>
 			<Scene
 				key="SearchMovies"
@@ -90,7 +97,7 @@ export default BTRouter = () => (
             />
             <Scene
                 key="MusicDetail"
-                title='详情'
+                title='音乐'
                 component={MusicDetail}
                 gesturesEnabled={true}
                 backButtonTintColor={'red'}
@@ -100,6 +107,14 @@ export default BTRouter = () => (
                 key="CityList"
                 title='城市'
                 component={CityList}
+                gesturesEnabled={true}
+                backButtonTintColor={'red'}
+                onLeft={Actions.pop}
+            />
+            <Scene
+                key="BookDetail"
+                title='图书'
+                component={BookDetail}
                 gesturesEnabled={true}
                 backButtonTintColor={'red'}
                 onLeft={Actions.pop}

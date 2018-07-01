@@ -80,12 +80,12 @@ export default class Book extends Component {
                     onEndReached={this.loadMoreData}
                     onEndReachedThreshold={0.001}
                     numColumns={2}
-                    // columnWrapperStyle={styles.twoColumns}
+                    // columnWrapperStyle={{margin:10}}
                     keyboardDismissMode={'on-drag'}
                     keyExtractor={(item, index) => index.toString()}
                     ItemSeparatorComponent={this.renderSeparator}
-                    renderItem={({item})=> {
-                        return <BookItem item={item}/>
+                    renderItem={({item, index})=> {
+                        return <BookItem item={item} index={index}/>
                     }}
                 />
             </View>
@@ -99,9 +99,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingTop:25,
     },
-    twoColumns: {
-        margin:10,
-        borderWidth:2,
-        borderColor:'orange',
-    }
 })
