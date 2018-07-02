@@ -67,11 +67,11 @@ export default class MovieDetail extends Component {
         })
             .then((response) => response.json())
             .then((res) => {
-                console.log(res);
                 res.photos.map((v,i) =>images.push({url:v.image}))
                 this.setState({data: res, isLoading: false})
-            }).catch((error) => {
-            console.log(error);
+            })
+            .catch((error) => {
+                console.log(error);
         });
     }
 
@@ -98,7 +98,7 @@ export default class MovieDetail extends Component {
                             <Text>豆瓣评分</Text>
                             <Text>{data.rating.average}</Text>
                             <Star value={data.rating.average}/>
-                            <Text>{data.ratings_count}人</Text>
+                            <Text>{data.ratings_count}人评价</Text>
                         </View>
                     </View>
                     <View style={{flexDirection: 'row', marginTop: 20}}>
@@ -111,10 +111,12 @@ export default class MovieDetail extends Component {
                         <Text style={{marginTop: 5}} numberOfLines={this.state.introNum}
                               ellipsizeMode={'tail'}>{data.summary}</Text>
                         {this.state.introNum != 0 &&
-                        <BTButton style={styles.foldup}
-                                  title={'展开'}
-                                  titleStyle={{color:'green'}}
-                                  onPress={() => this.setState({introNum: 0})}/>
+                        <View style={styles.foldup}>
+                            <BTButton style={{height:20}}
+                                      title={'展开'}
+                                      titleStyle={{color:'green'}}
+                                      onPress={() => this.setState({introNum: 0})}/>
+                        </View>
                         }
                     </View>
                     <Text style={[styles.subTitle, {marginLeft:10}]}>演员</Text>
@@ -194,7 +196,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'rgb(237,241,238)',
-        marginBottom:20,
     },
     imageV: {
         backgroundColor: '#2A362C',
@@ -252,9 +253,9 @@ const styles = StyleSheet.create({
         color:'black',
     },
     foldup: {
-        marginTop: 5,
-        width:30,
-        height:20,
+        alignItems: 'flex-end',
+        marginTop:-15,
+        marginRight:-5
     },
     actorV: {
         justifyContent: 'center',

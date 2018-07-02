@@ -18,7 +18,7 @@ export default class Star extends Component {
         this.state = {};
     }
     renderStars = () => {
-        const {value, width, height} = this.props;
+        const {value, showRate, width, height} = this.props;
         const results = [];
         let flag = true;
         if (value <= 0) {
@@ -56,6 +56,7 @@ export default class Star extends Component {
                 }
             }
         }
+        showRate && results.push(<Text key={100} style={styles.rating}>{value}</Text>)
         return results;
 
     }
@@ -76,6 +77,7 @@ Star.defaultProps = {
 };
 Star.propTypes = {
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    showRate:PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -86,5 +88,10 @@ const styles = StyleSheet.create({
     },
     star: {
         marginRight: 2,
+    },
+    rating: {
+        marginLeft:5,
+        color: '#A6A6A6',
+        fontSize: 12
     }
 })

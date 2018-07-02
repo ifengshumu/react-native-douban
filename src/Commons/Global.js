@@ -6,9 +6,9 @@
 
 import React from 'react';
 
-import { Dimensions, PixelRatio, Platform} from 'react-native';
-
 import {Actions} from 'react-native-router-flux';
+
+import { Dimensions, PixelRatio, Platform} from 'react-native';
 
 import BTStorage from './BTStorage';
 

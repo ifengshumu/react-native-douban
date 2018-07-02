@@ -53,7 +53,7 @@ export default class MusicItem extends Component {
                         <Text>豆瓣评分</Text>
                         <Text style={{marginTop:5}}>{props.rating.average}</Text>
                         <Star style={{marginTop:5}} value={props.rating.average}/>
-                        <Text style={{marginTop:5}}>{props.rating.numRaters}人</Text>
+                        <Text style={{marginTop:5}}>{props.rating.numRaters}人评价</Text>
                     </View>
                 </View>
             </TouchableHighlight>

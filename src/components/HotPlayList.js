@@ -66,7 +66,6 @@ export default class HotPlayList extends Component {
                     hasMore = true;
                     start++;
                 }
-                console.log(subjects);
                 this.setState({movies:subjects,loading:false,refreshing:false,hasMore:hasMore,type:type})
         }).catch((error)=>{
             console.log(error);

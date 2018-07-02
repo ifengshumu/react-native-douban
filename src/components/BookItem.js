@@ -22,7 +22,7 @@ export default class BookItem extends Component {
     render() {
         let props = this.props.item;
         return (
-            <TouchableHighlight onPress={()=>Actions.BookDetail({data:props})} underlayColor={'rgb(239,218,181)'}>
+            <TouchableHighlight onPress={()=>Actions.BookDetail({data:props,headerTitle:props.title})} underlayColor={'rgb(239,218,181)'}>
                 <View style={styles.container}>
                     <Image style={styles.image} source={{uri:props.image}}/>
                     <Text style={styles.title}>{props.title}</Text>
@@ -46,7 +46,7 @@ export default class BookItem extends Component {
                     {
                         props.publisher
                             ?
-                            <Text style={styles.content}>价格：{props.price}</Text>
+                            <Text style={styles.content}>价格：￥{props.price}</Text>
                             :
                             <Text style={styles.content}>价格：免费</Text>
                     }

@@ -15,6 +15,7 @@ import SeekMovies from '../components/SeekMovies';
 import Music from '../components/Music';
 import Book from '../components/Book';
 import Mine from '../components/Mine';
+import Register from '../components/Register';
 import SearchMovies from '../components/SearchMovies';
 import MovieDetail from '../components/MovieDetail';
 import ImageBrowser from './ImageBrowser';
@@ -115,6 +116,13 @@ export default BTRouter = () => (
                 key="BookDetail"
                 title='图书'
                 component={BookDetail}
+                gesturesEnabled={true}
+                backButtonTintColor={'red'}
+                onLeft={Actions.pop}
+            />
+            <Scene
+                key="Register"
+                component={Register}
                 gesturesEnabled={true}
                 backButtonTintColor={'red'}
                 onLeft={Actions.pop}

@@ -86,8 +86,9 @@ export default class SeekMoviesList extends Component {
                     let subjects:Array = res.subjects;
                     this.setState({movies:subjects,loading:false})
                 }
-            }).catch((error)=>{
-            console.log(error);
+            })
+            .catch((error)=>{
+                console.log(error);
         });
     }
     //下拉刷新

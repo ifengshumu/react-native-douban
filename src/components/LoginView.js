@@ -19,16 +19,42 @@ import BTButton from '../Commons/BTButton';
 export default class LoginView extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            phone:'',
+            password:'',
+            verifyCode:'',
+        };
     }
 
-    getPhoneNumber = ()=> {
+    getPhoneNumber = (text)=> {
+        this.setState({phone:text});
+    }
+    getPassword = (text)=> {
+        this.setState({password:text});
+    }
+
+
+    requestVerifyCode = ()=> {
 
     }
-    getVerifyCode = ()=> {
-
+    getVerifyCode = (text)=> {
+        this.setState({verifyCode:text});
     }
-
+    loginAction = ()=> {
+        if (this.props.isNeedVerifyCode) {
+            if (this.state.phone.length && this.state.verifyCode) {
+                console.log('调用登录API');
+            } else {
+                alert(!this.state.phone.length?'请输入手机号':'请输入验证码');
+            }
+        } else {
+            if (this.state.phone.length && this.state.password) {
+                console.log('调用登录API');
+            } else {
+                alert(!this.state.phone.length?'请输入手机号':'请输入密码');
+            }
+        }
+    }
 
 
 
@@ -48,9 +74,11 @@ export default class LoginView extends Component {
                             <LoginInput image={'comment'}
                                         placeholder='请输入验证码'
                                         isNeedVerifyCode={true}
-                                        onGetVerifyCode={this.getVerifyCode}
+                                        onGetVerifyCode={this.requestVerifyCode}
                                         maxLength={6}
                                         secureTextEntry={false}
+                                        keyboardType={'number-pad'}
+                                        onChangeText={this.getVerifyCode}
                             />
                         </View>
                         :
@@ -59,12 +87,13 @@ export default class LoginView extends Component {
                                         placeholder='请输入密码'
                                         maxLength={18}
                                         secureTextEntry={true}
+                                        onChangeText={this.getPassword}
                             />
                             <View style={{alignItems:'flex-end'}}>
                                 <BTButton style={styles.forgetpwdBtn}
                                           title={'忘记密码?'}
                                           titleStyle={styles.forgetpwd}
-                                          onPress={()=>{}}
+                                          onPress={()=>Actions.Register({headerTitle:'修改密码'})}
                                 />
                             </View>
                         </View>
@@ -72,11 +101,12 @@ export default class LoginView extends Component {
                 <BTButton title='登录'
                           style={styles.loginBtn}
                           titleStyle={styles.login}
-                          onPress={()=>alert('登录')}
+                          onPress={this.loginAction}
                 />
                 <View style={styles.regbtnView}>
                     <BTButton title={'注册账号'}
                               titleStyle={[styles.forgetpwd, styles.regtitle]}
+                              onPress={()=>Actions.Register({headerTitle:'注册账号'})}
                     />
                 </View>
 

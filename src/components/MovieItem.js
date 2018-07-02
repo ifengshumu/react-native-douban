@@ -35,7 +35,7 @@ export default class MovieItem extends Component {
                     />
                     <View style={{flex:3}}>
                         <Text style={styles.titleStyle}>{props.title}</Text>
-                        <Star style={{marginTop:5}} value={props.rating.average}/>
+                        <Star style={{marginTop:5}} value={props.rating.average} showRate={true}/>
                         <Text style={styles.contentStyle}>导演：{props.directors.map((v)=>v.name).join('/')}</Text>
                         <Text style={styles.contentStyle}>主演：{props.casts.map((v)=>v.name).join('/')}</Text>
                         <Text style={styles.bottomStyle}>{`${props.collect_count}人${type===0?'看过':'想看'}`}</Text>

@@ -47,10 +47,10 @@ export default class Music extends Component {
                     hasMore = true;
                     start += 11;
                 }
-                console.log(music);
                 this.setState({music:music,start:start,hasMore:hasMore,searchText:text})
-            }).catch((error)=>{
-            console.log(error);
+            })
+            .catch((error)=>{
+                console.log(error);
         });
     }
 

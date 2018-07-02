@@ -11,7 +11,7 @@ import {
     Text,
     Image,
 } from 'react-native';
-import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import LoginView from './LoginView';
 
 export default class Mine extends Component {

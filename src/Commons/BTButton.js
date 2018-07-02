@@ -31,8 +31,8 @@ export default class BTButton extends Component {
         //图片、文字
         if (hasAll) {
             return (
-                <RNButton style={this.props.style}
-                          onLongPress={this.props.onLongPress}
+                <RNButton style={[this.props.style, this.props.disabled && {backgroundColor:this.props.diabledBackgroundColor}]}
+                          disabled={this.props.disabled}
                           onPress={this.props.onPress}>
                     {
                         posi === 'top' || posi === 'left'
@@ -50,8 +50,8 @@ export default class BTButton extends Component {
     renderSingle = ()=> {
         let RNButton = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
         return (
-            <RNButton style={this.props.style}
-                      onLongPress={this.props.onLongPress}
+            <RNButton style={[this.props.style, this.props.disabled && {backgroundColor:this.props.diabledBackgroundColor}]}
+                      disabled={this.props.disabled}
                       onPress={this.props.onPress}>
                 <View style={styles.container}>
                     {
@@ -94,10 +94,10 @@ BTButton.propTypes = {
     imagePosition:PropTypes.oneOf('top','right','bottom','left'),
     image:PropTypes.string,
     title:PropTypes.string,
+    diabledBackgroundColor:PropTypes.string,
     style:PropTypes.any,
     imageStyle:PropTypes.any,
     titleStyle:PropTypes.any,
-    onPress:PropTypes.func,
 }
 const styles = StyleSheet.create({
     container: {
