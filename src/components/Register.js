@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import LoginInput from "../Commons/LoginInput";
 import BTButton from '../Commons/BTButton';
-import BTChekBox from '../Commons/BTChekBox';
+import BTChekbox from '../Commons/BTChekbox';
 
 export default class Register extends Component {
     static navigationOptions = ({navigation}) => ({
@@ -63,7 +63,7 @@ export default class Register extends Component {
                         this.props.headerTitle === '注册账号'
                             ?
                             <View style={{flexDirection: 'row', alignItems:'center'}}>
-                                <BTChekBox style={styles.checkbox}
+                                <BTChekbox style={styles.checkbox}
                                            size={20}
                                            defaultChecked={true}
                                            onChecked={(checked)=>{

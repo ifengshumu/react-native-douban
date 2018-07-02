@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import PropTypes from 'prop-types';
 
-export default class BTChekBox extends Component {
+export default class BTChekbox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,23 +32,26 @@ export default class BTChekBox extends Component {
         return (
             <View style={[props.style, {width:props.size, height:props.size}]}>
                 <TouchableOpacity onPress={this.pressCheckBox}>
-                    <Icon name={this.state.checked?'checkbox-marked-outline':'checkbox-blank-outline'} size={props.size}/>
+                    <Icon name={this.state.checked?this.props.checkedIcon:this.props.uncheckedIcon} size={props.size}/>
                 </TouchableOpacity>
             </View>
         )
     }
 }
 
-BTChekBox.propTypes = {
+BTChekbox.propTypes = {
     style:PropTypes.any,
     size:PropTypes.number,
     defaultChecked:PropTypes.bool,
+    checkedIcon:PropTypes.string,
+    uncheckedIcon:PropTypes.string,
     onChecked:PropTypes.func,
-
 }
-BTChekBox.defaultProps = {
+BTChekbox.defaultProps = {
     size:20,
     defaultChecked:true,
+    checkedIcon:'checkbox-marked-outline',
+    uncheckedIcon:'checkbox-blank-outline',
 }
 
 
