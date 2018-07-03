@@ -13,9 +13,9 @@ import {
     FlatList,
 } from 'react-native';
 import BTSearchBar from '../Commons/BTSearchBar';
-import MovieItem from './MovieItem';
+import MovieFirstItem from './MovieFirstItem';
 
-export default class SearchMovies extends Component {
+export default class MovieSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,7 +93,7 @@ export default class SearchMovies extends Component {
                         getItemLayout={(data, index) =>({length: 120, offset: (120 + 5) * index, index })}
                         ItemSeparatorComponent={this.renderSeparator}
                         renderItem={({item})=> {
-                            return <MovieItem item={item} type={2}/>
+                            return <MovieFirstItem item={item} type={2}/>
                         }}
                     />
                 }

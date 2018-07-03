@@ -62,7 +62,7 @@ export default class BTSearchBar extends Component {
                                 this.props.showCancel &&
                                 <TouchableOpacity style={styles.cancel}
                                                   onPress={this.props.onCancelSearch}>
-                                    <Text style={{color:'#73B582'}}>取消</Text>
+                                    <Text style={{color:'#73B582',fontSize:18}}>取消</Text>
                                 </TouchableOpacity>
                             }
                         </View>

@@ -10,18 +10,19 @@ import {
 import TabIcon from './TabIcon';
 
 
-import HotPlay from '../components/HotPlay';
-import SeekMovies from '../components/SeekMovies';
-import Music from '../components/Music';
-import Book from '../components/Book';
+import Movie from '../components/Movie';
+import MovieSearch from '../components/MovieSearch';
+import MovieDetail from '../components/MovieDetail';
+
 import Mine from '../components/Mine';
 import Register from '../components/Register';
-import SearchMovies from '../components/SearchMovies';
-import MovieDetail from '../components/MovieDetail';
+
 import ImageBrowser from './ImageBrowser';
-import MusicDetail from "../components/MusicDetail";
 import CityList from '../components/CityList';
-import BookDetail from '../components/BookDetail';
+
+import Search from '../components/Search';
+import SearchMusicDetail from "../components/SearchMusicDetail";
+import SearchBookDetail from '../components/SearchBookDetail';
 
 export default BTRouter = () => (
 	<Router>
@@ -41,28 +42,16 @@ export default BTRouter = () => (
                 activeTintColor='red'       // 选中tabbar图标的颜色
                 inactiveTintColor='gray'// 未选中tabbar图标的颜色
             >
-                <Scene key="HotPlay"
-                       title='热映'
-                       image={'tv'}
-                       component={HotPlay}
-                       hideNavBar
-                />
-                <Scene key='SeekMovies'
-                       title='找片'
+                <Scene key="Movie"
+                       title='电影'
                        image={'film'}
-                       component={SeekMovies}
-
-                />
-                <Scene key="Music"
-                       title='音乐'
-                       image={'music'}
-                       component={Music}
+                       component={Movie}
                        hideNavBar
                 />
-                <Scene key="Book"
-                       title='图书'
-                       image={'book'}
-                       component={Book}
+                <Scene key="Search"
+                       title='搜索'
+                       image={'search'}
+                       component={Search}
                        hideNavBar
                 />
                 <Scene key="Mine"
@@ -73,8 +62,8 @@ export default BTRouter = () => (
                 />
             </Tabs>
 			<Scene
-				key="SearchMovies"
-				component={SearchMovies}
+				key="MovieSearch"
+				component={MovieSearch}
 				gesturesEnabled={true}
 				// backButtonImage={Images.Back}
 				hideNavBar
@@ -97,9 +86,17 @@ export default BTRouter = () => (
                 onLeft={Actions.pop}
             />
             <Scene
-                key="MusicDetail"
+                key="SearchMusicDetail"
                 title='音乐'
-                component={MusicDetail}
+                component={SearchMusicDetail}
+                gesturesEnabled={true}
+                backButtonTintColor={'red'}
+                onLeft={Actions.pop}
+            />
+            <Scene
+                key="SearchBookDetail"
+                title='图书'
+                component={SearchBookDetail}
                 gesturesEnabled={true}
                 backButtonTintColor={'red'}
                 onLeft={Actions.pop}
@@ -108,14 +105,6 @@ export default BTRouter = () => (
                 key="CityList"
                 title='城市'
                 component={CityList}
-                gesturesEnabled={true}
-                backButtonTintColor={'red'}
-                onLeft={Actions.pop}
-            />
-            <Scene
-                key="BookDetail"
-                title='图书'
-                component={BookDetail}
                 gesturesEnabled={true}
                 backButtonTintColor={'red'}
                 onLeft={Actions.pop}

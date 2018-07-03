@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
 import BTCarousel from '../Commons/BTCarousel';
-import SeekMoviesList from './SeekMoviesList';
+import MovieSecondList from './MovieSecondList';
 
 let images = [
     'https://img13.360buyimg.com/da/jfs/t5575/308/4215648119/104001/4c2ab0ee/5949e860Nece99102.jpg',
@@ -67,7 +67,7 @@ export default class SeekMovies extends Component {
                                 <View tabLabel={value}
                                       key={index}
                                       style={{marginTop:5}}>
-                                    <SeekMoviesList type={type[index]}/>
+                                    <MovieSecondList type={type[index]}/>
                                 </View>
                             )
                         })

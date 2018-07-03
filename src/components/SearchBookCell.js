@@ -10,10 +10,10 @@ import {
     View,
     Text,
     Image,
-    TouchableHighlight,
+    TouchableHighlight
 } from 'react-native';
 
-export default class BookItem extends Component {
+export default class SearchBookCell extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -22,7 +22,7 @@ export default class BookItem extends Component {
     render() {
         let props = this.props.item;
         return (
-            <TouchableHighlight onPress={()=>Actions.BookDetail({data:props,headerTitle:props.title})} underlayColor={'rgb(239,218,181)'}>
+            <TouchableHighlight onPress={()=>Actions.SearchBookDetail({data:props,headerTitle:props.title})} underlayColor={'transparent'}>
                 <View style={styles.container}>
                     <Image style={styles.image} source={{uri:props.image}}/>
                     <Text style={styles.title}>{props.title}</Text>
@@ -59,12 +59,13 @@ export default class BookItem extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin:10,
-        borderRadius:10,
+        marginRight:10,
+        marginTop:10,
+        marginBottom:10,
+        width:(SCREEN_WIDTH-30)/2,
         backgroundColor: 'rgb(237,241,238)',
     },
     image: {
-        width:(SCREEN_WIDTH-40)/2,
         height:280,
     },
     title: {

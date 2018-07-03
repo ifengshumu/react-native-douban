@@ -12,11 +12,11 @@ import {
     FlatList,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import SeekMoviesItem from './SeekMoviesItem';
+import MovieSecondItem from './MovieSecondItem';
 
-let host = 'https://api.douban.com/v2/movie';
+let host = 'https://api.douban.com/v2/movie/';
 let start = 0;
-export default class SeekMoviesList extends Component {
+export default class MovieSecondList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -40,7 +40,7 @@ export default class SeekMoviesList extends Component {
         formData.append('city','北京')
         formData.append('client','something')
         let type = this.props.type;
-        let url = `${host}/${type}?start=${start}&count=20`;
+        let url = `${host}${type}?start=${start}&count=20`;
         console.log(url);
         let params = null;
         if (type === 'weekly'||type === 'new_movies') {
@@ -119,7 +119,7 @@ export default class SeekMoviesList extends Component {
                         keyExtractor={this.renderKeyExtractor}
                         getItemLayout={(data, index) =>({length: 200, offset: (200 + 1) * index, index })}
                         renderItem={({item,index})=> {
-                            return <SeekMoviesItem item={item} index={index}/>
+                            return <MovieSecondItem item={item} index={index}/>
                         }}
                     />
                 }
@@ -127,7 +127,7 @@ export default class SeekMoviesList extends Component {
         )
     }
 }
-SeekMoviesList.propTypes = {
+MovieSecondList.propTypes = {
     type:PropTypes.string.isRequired,
 }
 

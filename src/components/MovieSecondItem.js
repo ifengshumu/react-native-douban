@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Star from '../Commons/Star';
 
-export default class SeekMoviesItem extends Component {
+export default class MovieSecondItem extends Component {
     constructor(props) {
         super(props);
         this.state = {};

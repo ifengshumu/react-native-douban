@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Star from '../Commons/Star';
 
-export default class MusicItem extends Component {
+export default class SearchMusicCell extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -23,11 +23,11 @@ export default class MusicItem extends Component {
     render() {
         let props = this.props.item;
         return (
-            <TouchableHighlight onPress={()=>Actions.MusicDetail({id:props.id})} underlayColor={'rgb(239,218,181)'}>
+            <TouchableHighlight onPress={()=>Actions.SearchMusicDetail({url:props.mobile_link})} underlayColor={'rgb(239,218,181)'}>
                 <View style={styles.container}>
                     <Image
                         source={{uri:props.image}}
-                        resizeMode={'center'}
+                        resizeMode={'stretch'}
                         style={styles.image}
                     />
                     <View style={{flex:3}}>
@@ -69,9 +69,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(237,241,238)',
     },
     image: {
-        flex:1,
-        width:100,
-        height:120,
+        flex:1.5,
+        height:150,
         margin:10,
         borderRadius:10,
     },
@@ -88,9 +87,10 @@ const styles = StyleSheet.create({
     },
     rate: {
         flex: 1,
-        marginTop: 20,
-        marginBottom:20,
-        marginRight: 10,
+        marginTop: 30,
+        marginBottom:30,
+        marginLeft:5,
+        marginRight: 5,
         borderRadius: 10,
         shadowRadius: 5,
         shadowColor: 'gray',

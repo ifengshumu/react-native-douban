@@ -15,10 +15,11 @@ import {
     FlatList,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import MovieItem from './MovieItem';
+import MovieFirstItem from './MovieFirstItem';
 
+let host = 'https://api.douban.com/v2/movie/';
 let start = 0;
-export default class HotPlayList extends Component {
+export default class MovieFirstList extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,10 +45,10 @@ export default class HotPlayList extends Component {
     }
     //请求数据
     fetchData = (city) => {
-        let url = `${this.props.requestURL}?apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
+        let url = `${host}${this.props.type}?apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
         let type = 1;
-        if (this.props.requestURL.includes('in_theaters')) {
-            url = `${this.props.requestURL}?city=${city}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
+        if (this.props.type.includes('in_theaters')) {
+            url = `${host}${this.props.type}?city=${city}&apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=10`;
             type = 0;
         }
         console.log(url);
@@ -104,17 +105,13 @@ export default class HotPlayList extends Component {
                         getItemLayout={(data, index) =>({length: 120, offset: (120 + 5) * index, index })}
                         ItemSeparatorComponent={this.renderSeparator}
                         renderItem={({item})=> {
-                            return <MovieItem item={item} type={this.state.type}/>
+                            return <MovieFirstItem item={item} type={this.state.type}/>
                         }}
                     />
                 }
             </View>
         )
     }
-}
-
-HotPlayList.propTypes = {
-    requestURL:PropTypes.string.isRequired,
 }
 
 

@@ -16,7 +16,7 @@ import Star from '../Commons/Star';
 import BTButton from '../Commons/BTButton';
 
 
-export default class MovieItem extends Component {
+export default class MovieFirstItem extends Component {
     constructor(props) {
         super(props);
         this.state = {};

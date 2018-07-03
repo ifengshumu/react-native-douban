@@ -15,7 +15,7 @@ import {
 import Star from '../Commons/Star';
 import BTButton from '../Commons/BTButton';
 
-export default class BookDetail extends Component {
+export default class SearchBookDetail extends Component {
     static navigationOptions = ({navigation}) => ({
         headerTitle:`${navigation.state.params.headerTitle}`,
     });
