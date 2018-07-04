@@ -54,14 +54,27 @@ export default class BTStorage extends Component {
     /**
      key:保存的key值
      object：保存的value
-     expires：有效时间，
      */
-    static save(key,object,expiress) {
+    static save(key,object) {
         this.isInit();
         storage.save({
             key:key,
             data:object,
-            expires:expiress?expiress:defaultExpires,
+            expires:defaultExpires
+        })
+    }
+    /**
+     key:保存的key值
+     object：保存的value
+     expires：有效时间，
+     */
+    static save(key,object,expiress) {
+        this.isInit();
+        console.log(key,object);
+        storage.save({
+            key:key,
+            data:object,
+            expires:expiress,
         })
     }
 

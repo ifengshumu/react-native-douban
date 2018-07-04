@@ -9,6 +9,7 @@ import {
     StyleSheet,
     View,
     TouchableOpacity,
+    ViewPropTypes
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -40,7 +41,7 @@ export default class BTChekbox extends Component {
 }
 
 BTChekbox.propTypes = {
-    style:PropTypes.any,
+    style:ViewPropTypes.style,
     size:PropTypes.number,
     defaultChecked:PropTypes.bool,
     checkedIcon:PropTypes.string,

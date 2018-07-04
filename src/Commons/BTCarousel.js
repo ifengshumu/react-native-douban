@@ -8,7 +8,7 @@ import React, {Component} from 'react';
 import {
     View,
     Image,
-    TouchableHighlight,
+    ViewPropTypes
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -37,7 +37,7 @@ export default class BTCarousel extends Component {
                             return (
                                 <Image style={{height: this.props.swiperHeight}}
                                        key = {index}
-                                       resizeMode='cover'
+                                       resizeMode='stretch'
                                        source={{uri: value}}
                                 />)
                         })
@@ -49,7 +49,7 @@ export default class BTCarousel extends Component {
 }
 
 BTCarousel.propTypes = {
-    style: PropTypes.any,
+    style: ViewPropTypes.style,
     imageData:PropTypes.array,
     swiperHeight: PropTypes.number.isRequired,
     autoScrollTimeInterval: PropTypes.number,

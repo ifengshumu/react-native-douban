@@ -6,23 +6,22 @@ import {
 	Tabs,
 	Modal,
 } from 'react-native-router-flux'
-
 import TabIcon from './TabIcon';
-
 
 import Movie from '../components/Movie';
 import MovieSearch from '../components/MovieSearch';
 import MovieDetail from '../components/MovieDetail';
-
-import Mine from '../components/Mine';
-import Register from '../components/Register';
-
-import ImageBrowser from './ImageBrowser';
 import CityList from '../components/CityList';
+import ImageBrowser from './ImageBrowser';
 
 import Search from '../components/Search';
 import SearchMusicDetail from "../components/SearchMusicDetail";
 import SearchBookDetail from '../components/SearchBookDetail';
+
+import Relax from '../components/Relax';
+
+import Mine from '../components/Mine';
+import Register from '../components/Register';
 
 export default BTRouter = () => (
 	<Router>
@@ -36,11 +35,11 @@ export default BTRouter = () => (
                 headerMode='screen' // 页面切换方式
                 icon={TabIcon}      // 自定义Icon显示方式
                 lazy={true}         // 是否默认渲染tabbar
-                tabBarPosition={'bottom'}// tabbar在顶部还是底部，iOS默认顶部，安卓默认顶部
-                // activeBackgroundColor='white'   // 选中tabbar的背景色
-                // inactiveBackgroundColor='white' // 未选中tabbar的背景色
+                tabBarPosition={'bottom'}// tabbar在顶部还是底部，iOS默认底部，安卓默认顶部
                 activeTintColor='red'       // 选中tabbar图标的颜色
                 inactiveTintColor='gray'// 未选中tabbar图标的颜色
+                // activeBackgroundColor='white'   // 选中tabbar的背景色
+                // inactiveBackgroundColor='white' // 未选中tabbar的背景色
             >
                 <Scene key="Movie"
                        title='电影'
@@ -53,6 +52,11 @@ export default BTRouter = () => (
                        image={'search'}
                        component={Search}
                        hideNavBar
+                />
+                <Scene key="Relax"
+                       title='休闲'
+                       image={'suitcase'}
+                       component={Relax}
                 />
                 <Scene key="Mine"
                        title='我的'

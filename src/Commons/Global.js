@@ -27,5 +27,6 @@ global.SCREEN_HEIGHT = height;
 global.PixelRatio = PixelRatio.get();
 // router跳转的方法
 global.Actions = Actions;
-
-global.BTStorage = BTStorage.initStorage();
+//存储
+BTStorage.initStorage();
+global.BTStorage = BTStorage;

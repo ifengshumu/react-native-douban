@@ -13,6 +13,7 @@ import {
     TouchableOpacity,
     TouchableNativeFeedback,
     Platform,
+    ViewPropTypes,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -95,9 +96,9 @@ BTButton.propTypes = {
     image:PropTypes.string,
     title:PropTypes.string,
     diabledBackgroundColor:PropTypes.string,
-    style:PropTypes.any,
-    imageStyle:PropTypes.any,
-    titleStyle:PropTypes.any,
+    style:ViewPropTypes.style,
+    imageStyle:Image.propTypes.style,
+    titleStyle:Text.propTypes.style,
 }
 const styles = StyleSheet.create({
     container: {

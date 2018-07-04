@@ -29,9 +29,8 @@ export default class MovieFirstItem extends Component {
             <TouchableHighlight onPress={()=>Actions.MovieDetail({'id':props.id})}
                                 underlayColor={'yellow'}>
                 <View style={styles.container}>
-                    <Image
-                        source={{uri:props.images.large}}
-                        style={styles.imageStyle}
+                    <Image source={{uri:props.images.large}}
+                           style={styles.imageStyle}
                     />
                     <View style={{flex:3}}>
                         <Text style={styles.titleStyle}>{props.title}</Text>
@@ -43,9 +42,9 @@ export default class MovieFirstItem extends Component {
                     {
                         type !== 2 &&
                         <View style={styles.ticketStyle}>
-                            <BTButton
-                                style={styles.ticketBtnStyle}
-                                title={type===0?'购票':'想看'}
+                            <BTButton style={styles.ticketBtnStyle}
+                                      title={type===0?'购票':'想看'}
+                                      onPress={()=>alert(type===0?'购票':'想看')}
                             />
                         </View>
                     }

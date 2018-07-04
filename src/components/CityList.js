@@ -26,7 +26,13 @@ export default class CityList extends Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        BTStorage.load('citys', (object)=>{
+            if (object.length) {
+                this.setState({citys:object, loading:false});
+            } else {
+                this.fetchData();
+            }
+        })
     }
 
     //请求城市数据
@@ -74,6 +80,7 @@ export default class CityList extends Component {
                         cityData.push({key:value, data:sections.get(value)});
                     })
                     this.setState({citys:cityData, loading:false});
+                    BTStorage.save('citys', cityData);
                 }
             })
             .catch((error)=>{
