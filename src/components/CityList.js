@@ -27,7 +27,7 @@ export default class CityList extends Component {
 
     componentDidMount() {
         BTStorage.load('citys', (object)=>{
-            if (object.length) {
+            if (object) {
                 this.setState({citys:object, loading:false});
             } else {
                 this.fetchData();
