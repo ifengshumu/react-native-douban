@@ -71,7 +71,7 @@ export default class Relax extends Component {
                                        thridSubTitle={thrid[index]}
                                        fourthSubTitle={fourth[index]}
                                        onClickItem={(t,i)=>{
-                                            console.log(t,i);
+                                           alert(i+t);
                                         }}
                             />
                         )

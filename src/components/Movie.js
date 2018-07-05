@@ -26,7 +26,6 @@ export default class Movie extends Component {
             city: '杭州'
         };
     }
-
     componentWillReceiveProps(nextProps) {
         if (nextProps.city) {
             this.setState({city: nextProps.city})

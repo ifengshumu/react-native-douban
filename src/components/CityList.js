@@ -26,66 +26,13 @@ export default class CityList extends Component {
     }
 
     componentDidMount() {
-        BTStorage.load('citys', (object)=>{
+        BTStorage.load('citys',(object,error)=>{
             if (object) {
                 this.setState({citys:object, loading:false});
             } else {
-                this.fetchData();
+                console.log('城市数据取出错误'+error);
             }
         })
-    }
-
-    //请求城市数据
-    fetchData = () => {
-        let url = `https://api.douban.com/v2/loc/list?apikey=0b2bdeda43b5688921839c8ecb20399b&start=${start}&count=100`;
-        console.log(url);
-        fetch(url)
-            .then((response)=>response.json())
-            .then((res)=>{
-                citys = citys.concat(res.locs);
-                start = res.count+res.start;
-                let hasMore = false;
-                if (start < res.total) {
-                    hasMore = true;
-                    start++;
-                }
-                if (hasMore) {
-                    this.fetchData();
-                } else {
-                    let sections = new Map();
-                    let keys =[];
-                    citys.map((v, i) => {
-                        let key = v.uid.charAt(0).toUpperCase();
-                        let isChinese = /^[\u4e00-\u9fa5]/.test(v.name.charAt(0));
-                        if (sections.has(key)) {
-                            if (isChinese) {
-                                let cityA = sections.get(key);
-                                cityA.push(v);
-                            }
-                        } else {
-                            if (isChinese && key != '1') {
-                                let cityA = [];
-                                cityA.push(v);
-                                keys.push(key);
-                                sections.set(key, cityA);
-                            }
-                        }
-                    })
-                    keys.sort((v1, v2)=>{
-                        if (v1 > v2) return 1;
-                        if (v1 < v2) return -1;
-                    })
-                    let cityData = [];
-                    keys.map((value, index) => {
-                        cityData.push({key:value, data:sections.get(value)});
-                    })
-                    this.setState({citys:cityData, loading:false});
-                    BTStorage.save('citys', cityData);
-                }
-            })
-            .catch((error)=>{
-                console.log(error);
-        });
     }
 
     //返回区头视图
