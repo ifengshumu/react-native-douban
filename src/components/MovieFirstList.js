@@ -68,8 +68,9 @@ export default class MovieFirstList extends Component {
                     start++;
                 }
                 this.setState({movies:subjects,loading:false,refreshing:false,hasMore:hasMore,type:type})
-        }).catch((error)=>{
-            console.log(error);
+        })
+            .catch((error)=>{
+                console.log(error);
         });
     }
     //下拉刷新

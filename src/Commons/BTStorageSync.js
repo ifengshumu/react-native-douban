@@ -14,7 +14,7 @@ const sync = {
 
     // sync里的方法的名字必须和所存数据的key完全相同，eg：citys()
     // 方法接受的参数为一整个object，所有参数从object中解构取出,如下：
-    // let { id, resolve, reject, syncParams: {fetchOptions}} = params;
+    // let {resolve, reject, syncParams: {fetchOptions}} = params;
     // 请求需要的参数都在extraFetchOptions里
     // 调用resolve无缝返回结果或reject返回错误。
 

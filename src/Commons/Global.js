@@ -12,6 +12,8 @@ import { Dimensions, PixelRatio, Platform} from 'react-native';
 
 import BTStorage from './BTStorage';
 
+import BTFetch from './BTFetch';
+
 // 通过系统API获得屏幕宽高
 let { height, width } = Dimensions.get('window');
 
@@ -30,3 +32,4 @@ global.Actions = Actions;
 //存储
 BTStorage.initStorage();
 global.BTStorage = BTStorage;
+global.BTFetch = BTFetch;

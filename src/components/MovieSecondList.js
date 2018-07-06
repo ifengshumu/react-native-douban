@@ -29,6 +29,7 @@ export default class MovieSecondList extends Component {
     componentDidMount() {
         this.fetchData();
     }
+
     //请求数据
     fetchData = () => {
         //'Top250':GET请求，默认数据结构，可以刷新
