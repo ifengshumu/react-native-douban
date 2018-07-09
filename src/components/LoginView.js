@@ -10,11 +10,12 @@ import {
     View,
     Text,
     Image,
-    Button,
-    TouchableOpacity
+    TouchableOpacity,
+    Modal,
 } from 'react-native';
 import LoginInput from '../Commons/LoginInput';
 import BTButton from '../Commons/BTButton';
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 
 export default class LoginView extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ export default class LoginView extends Component {
             phone:'',
             password:'',
             verifyCode:'',
+            show:false,
         };
     }
 
@@ -56,7 +58,9 @@ export default class LoginView extends Component {
         }
     }
 
-
+    showTips = ()=> {
+        this.setState({show:!this.state.show})
+    }
 
     render() {
         return (
@@ -109,7 +113,51 @@ export default class LoginView extends Component {
                               onPress={()=>Actions.Register({headerTitle:'注册账号'})}
                     />
                 </View>
-
+                <BTButton style={[styles.loginBtn,{margin:10}]}
+                          title={'动画'}
+                          titleStyle={styles.login}
+                          onPress={()=>Actions.Animation()}/>
+                <TouchableOpacity
+                    style={{alignItems:'center'}}
+                    onPress={this.showTips}
+                >
+                    <Icon name={'question'} size={30}/>
+                </TouchableOpacity>
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    visible={this.state.show}
+                    onShow={() => {}}
+                    onRequestClose={() => {}} >
+                    <View style={styles.modalStyle}>
+                        <View style={styles.subView}>
+                            <Text style={styles.titleText}>
+                                提示
+                            </Text>
+                            <Text style={styles.contentText}>
+                                Modal显示的View 多行了超出一行了会怎么显示，就像这样显示了很多内容该怎么显示，看看效果
+                            </Text>
+                            <View style={styles.horizontalLine} />
+                            <View style={styles.buttonView}>
+                                <TouchableOpacity underlayColor='transparent'
+                                                  style={styles.buttonStyle}
+                                                  onPress={this.showTips}>
+                                    <Text style={styles.buttonText}>
+                                        取消
+                                    </Text>
+                                </TouchableOpacity>
+                                <View style={styles.verticalLine} />
+                                <TouchableOpacity underlayColor='transparent'
+                                                  style={styles.buttonStyle}
+                                                  onPress={this.showTips}>
+                                    <Text style={styles.buttonText}>
+                                        确定
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         )
     }
@@ -147,5 +195,70 @@ const styles = StyleSheet.create({
     },
     regtitle: {
         fontSize:20,
-    }
+    },
+
+
+
+    // modal的样式
+    modalStyle: {
+        // backgroundColor:'black',
+        // opacity:0.2,
+        alignItems: 'center',
+        justifyContent:'center',
+        flex:1,
+    },
+    // modal上子View的样式
+    subView:{
+        marginLeft:60,
+        marginRight:60,
+        backgroundColor:'white',
+        opacity:1,
+        alignSelf: 'stretch',
+        justifyContent:'center',
+        borderRadius: 10,
+        borderWidth: 0.5,
+        borderColor:'#ccc',
+    },
+    // 标题
+    titleText:{
+        marginTop:10,
+        marginBottom:5,
+        fontSize:16,
+        fontWeight:'bold',
+        textAlign:'center',
+    },
+    // 内容
+    contentText:{
+        margin:8,
+        fontSize:14,
+        textAlign:'center',
+    },
+    // 水平的分割线
+    horizontalLine:{
+        marginTop:5,
+        height:0.5,
+        backgroundColor:'#ccc',
+    },
+    // 按钮
+    buttonView:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    buttonStyle:{
+        flex:1,
+        height:44,
+        alignItems: 'center',
+        justifyContent:'center',
+    },
+    // 竖直的分割线
+    verticalLine:{
+        width:0.5,
+        height:44,
+        backgroundColor:'#ccc',
+    },
+    buttonText:{
+        fontSize:16,
+        color:'#3393F2',
+        textAlign:'center',
+    },
 })

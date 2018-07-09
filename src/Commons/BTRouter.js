@@ -22,6 +22,7 @@ import Relax from '../components/Relax';
 
 import Mine from '../components/Mine';
 import Register from '../components/Register';
+import Animation from '../components/Animation';
 
 export default BTRouter = () => (
 	<Router>
@@ -116,6 +117,14 @@ export default BTRouter = () => (
             <Scene
                 key="Register"
                 component={Register}
+                gesturesEnabled={true}
+                backButtonTintColor={'red'}
+                onLeft={Actions.pop}
+            />
+            <Scene
+                key="Animation"
+                title='动画'
+                component={Animation}
                 gesturesEnabled={true}
                 backButtonTintColor={'red'}
                 onLeft={Actions.pop}

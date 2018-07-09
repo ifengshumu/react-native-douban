@@ -11,6 +11,7 @@ import {
     Image
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class Star extends Component {
     constructor(props) {
@@ -34,24 +35,29 @@ export default class Star extends Component {
             if (star[0] < 2) {
                 if (flag) {
                     flag = false;
-                    results.push(<Image key={i} style={{width: width, height: height}}
-                                        source={require('../img/star-half.png')}/>);
+                    results.push(<Icon key={i} name={'ios-star-half'} size={18} color={'rgb(255,183,18)'}/>)
+                    // results.push(<Image key={i} style={{width: width, height: height}}
+                    //                     source={require('../img/star-half.png')}/>);
                 } else {
-                    results.push(<Image key={i} style={{width: width, height: height}}
-                                        source={require('../img/star-empty.png')}/>);
+                    results.push(<Icon key={i} name={'ios-star-outline'} size={18} color={'rgb(255,183,18)'}/>)
+                    // results.push(<Image key={i} style={{width: width, height: height}}
+                    //                     source={require('../img/star-empty.png')}/>);
                 }
             } else  {
                 if (i*2 <= star[0]) {
-                    results.push(<Image key={i} style={{width: width, height: height}}
-                                        source={require('../img/star-full.png')}/>);
+                    results.push(<Icon key={i} name={'ios-star'} size={18} color={'rgb(255,183,18)'}/>)
+                    // results.push(<Image key={i} style={{width: width, height: height}}
+                    //                     source={require('../img/star-full.png')}/>);
                 } else {
-                    if (flag && star[1] >= 5) {
+                    if (flag && (star[1] >= 5 || star[0] % 2 >= 1)) {
                         flag = false;
-                        results.push(<Image key={i} style={{width: width, height: height}}
-                                            source={require('../img/star-half.png')}/>);
+                        results.push(<Icon key={i} name={'ios-star-half'} size={18} color={'rgb(255,183,18)'}/>)
+                        // results.push(<Image key={i} style={{width: width, height: height}}
+                        //                     source={require('../img/star-half.png')}/>);
                     } else {
-                        results.push(<Image key={i} style={{width: width, height: height}}
-                                            source={require('../img/star-empty.png')}/>);
+                        results.push(<Icon key={i} name={'ios-star-outline'} size={18} color={'rgb(255,183,18)'}/>)
+                        // results.push(<Image key={i} style={{width: width, height: height}}
+                        //                     source={require('../img/star-empty.png')}/>);
                     }
                 }
             }
@@ -63,7 +69,7 @@ export default class Star extends Component {
 
     render() {
         return (
-            <View style={[{flexDirection: 'row'}, this.props.style]}>
+            <View style={[styles.star, this.props.style]}>
                 {this.renderStars()}
             </View>
         );
@@ -88,10 +94,12 @@ const styles = StyleSheet.create({
     },
     star: {
         marginRight: 2,
+        flexDirection: 'row',
+        alignItems:'center',
     },
     rating: {
         marginLeft:5,
         color: '#A6A6A6',
-        fontSize: 12
+        fontSize: 15
     }
 })

@@ -10,6 +10,7 @@ import {
     View,
     Text,
     Image,
+    ScrollView,
 } from 'react-native';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import LoginView from './LoginView';

@@ -7,20 +7,23 @@
 import React, {Component} from 'react';
 
 export default class BTFetch extends Component {
-    // noinspection JSAnnotator
     static fetchURL(url,method,params,resolve,reject) {
         let body = null;
-        for (let key in params) {
+        let keys = Object.keys(params);
+        keys.map((value, index) => {
             if (method === 'POST') {
                 body = new FormData();
-                body.append(key,params[key]);
+                body.append(value,params[value]);
             } else {
-                url = url + '?';
-                url += key + '=' + params[key] + '&';
-                url.substr(url.length-1,1);
+                if (index === 0) {
+                    url += '?';
+                }
+                url += value + '=' + params[value];
+                if (index !== keys.length - 1) {
+                    url += '&'
+                }
             }
-        }
-
+        })
         let formData = {
             method:method,
             headers:{

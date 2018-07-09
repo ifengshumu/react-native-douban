@@ -92,13 +92,13 @@ export default class BTButton extends Component {
     }
 }
 BTButton.propTypes = {
+    style:ViewPropTypes.style,
+    title:PropTypes.string,
+    titleStyle:Text.propTypes.style,
     imagePosition:PropTypes.oneOf('top','right','bottom','left'),
     image:PropTypes.string,
-    title:PropTypes.string,
-    diabledBackgroundColor:PropTypes.string,
-    style:ViewPropTypes.style,
     imageStyle:Image.propTypes.style,
-    titleStyle:Text.propTypes.style,
+    diabledBackgroundColor:PropTypes.string,
 }
 const styles = StyleSheet.create({
     container: {
